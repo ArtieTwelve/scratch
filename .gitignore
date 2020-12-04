@@ -1,0 +1,8 @@
+monitor
+a.out
+settings.json
+*.o
+build/*
+*.json
+cmake-build-d-alexa/*
+cmake-build-debug/*
