@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(scratch)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD  11)
 
 ##########  Add GTest, GMock as subprojects #################33333333
 # Download and unpack googletest at configure time
