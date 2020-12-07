@@ -47,6 +47,7 @@ message("Gtest_Source_Dir is: " "${gmock_SOURCE_DIR}")
 
 ################ End Add GTest, GMock ###################
 
-add_executable(scratch main.cpp)
+add_executable(scratch main.cpp entity/Entity.cpp entity/Entity.h)
 
+add_subdirectory(entity)
 add_subdirectory(tests)
