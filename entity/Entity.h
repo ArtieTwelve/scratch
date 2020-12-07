@@ -12,10 +12,10 @@ class Entity {
          Entity(int i);
          Entity(Entity&);
          ~Entity();
-         Entity& operator=(Entity& ref);
+         virtual Entity& operator=(Entity& ref);
          Entity(Entity&&);
-         Entity& operator=(Entity&& ref);
-         void setInt(int i);
+         virtual Entity& operator=(Entity&& ref);
+         virtual void setInt(int i);
 
     private:
          int _i;
