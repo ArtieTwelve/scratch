@@ -1,11 +1,85 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <memory>
-#include "./entity/Entity.h"
+//
+// Created by smithla on 12/6/20.
+//
 
 
-int main() {
+#include "Entity.h"
+Entity::Entity() { std::cout << " Default CTOR\n";}
+Entity::Entity(std::string name)  : _name(name) {
+    std::cout << " Int CTOR\n";
+}
+
+Entity:: Entity(std::string name,int i) : _name(name),_pi(std::make_unique<int>(i)){
+    std::cout << " Name, Int CTOR\n";
+}
+
+Entity::Entity(const Entity& e) {
+    std::cout << " Copy CTOR\n";
+    _i = e._i;
+}
+
+Entity::~Entity() {
+    std::cout << " Destructor\n";
+}
+
+Entity &Entity::operator=(Entity &ref) {
+    std::cout << " Assignment Operator\n";
+    _name = ref._name;
+    _i = ref._i;
+    _s = ref._s;
+    _preg = ref._preg;
+    std::swap(_pi,ref._pi);
+    return *this;
+}
+
+Entity::Entity(Entity &&ref) {
+    std::cout << " Move CTOR \n";
+    _i = ref._i;
+}
+
+Entity &Entity::operator=(Entity &&ref) noexcept {
+    std::cout << " Move Assignment\n";
+    _name = "";
+    _preg = NULL;
+    _i = 0;
+    _s = "";
+    _name = std::move(ref._name);
+    _i = std::move(ref._i);
+    _pi = std::move(ref._pi);
+    _s = std::move(ref._s);
+    _preg = std::move(ref._preg);
+
+    ref._i = 0;
+    ref._preg = nullptr;
+    ref._s = "";
+    ref._name = "";
+    ref._pi.release();
+    return *this;
+}
+
+void Entity::setInt(int i) {
+    _i = i;
+}
+
+void Entity::setPi(int i) {
+    _pi = std::make_unique<int>(i);
+}
+void  Entity::setString(std::string s) {
+    _s = s;
+}
+
+void Entity::setName(std::string n) {
+    _name = n;
+}
+
+int Entity::getPi() {
+    return *(_pi.get());
+}
+
+// The main class used in main.cpp
+// Move this code back to main.cpp to test it
+
+/*int main() {
     std::cout << "Hello, Scratch World!" << std::endl;
     int i = 11;
     int r = 22;
@@ -73,7 +147,4 @@ int main() {
     // I can del this one
     delete raw;
     std::cout << "Goodbye, Scratch World!" << std::endl;
-}
-
-
-
+}*/
