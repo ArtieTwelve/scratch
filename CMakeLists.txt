@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.5)
 project(scratch)
-set(CMAKE_CXX_STANDARD  11)
+set(CMAKE_CXX_STANDARD  17)
 
 ##########  Add GTest, GMock as subprojects #################33333333
 # Download and unpack googletest at configure time
@@ -47,6 +47,7 @@ message("Gtest_Source_Dir is: " "${gmock_SOURCE_DIR}")
 
 ################ End Add GTest, GMock ###################
 
-add_executable(scratch main.cpp)
+add_executable(scratch main.cpp entity/Entity.cpp entity/Entity.h)
 
+add_subdirectory(entity)
 add_subdirectory(tests)
