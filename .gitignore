@@ -6,3 +6,4 @@ build/*
 *.json
 cmake-build-d-alexa/*
 cmake-build-debug/*
+cmake-build-local/*
