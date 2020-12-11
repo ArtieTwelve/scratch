@@ -1,10 +1,12 @@
 //
-// Created by smithla on 12/10/20.
+// Created by smithla on 12/11/20.
 //
 #include <iostream>
 #include <memory>
-#ifndef SCRATCH_SONG_H
-#define SCRATCH_SONG_H
+
+#ifndef SCRATCH_MEDIAASSETS_H
+#define SCRATCH_MEDIAASSETS_H
+
 
 struct MediaAsset {
     virtual ~MediaAsset() = default;
@@ -19,7 +21,7 @@ struct Photo : public MediaAsset {
     Photo(const std::wstring& date,
           const std::wstring& location,
           const std::wstring subject) :
-          _date(date),_location(location),_subject(subject) {}
+            _date(date),_location(location),_subject(subject) {}
 
     virtual ~Photo();
     Photo(const Photo&);
@@ -51,4 +53,5 @@ private:
 
 std::unique_ptr<Song> SongFactory(std::wstring artist, std::wstring title);
 
-#endif //SCRATCH_SONG_H
+
+#endif //SCRATCH_MEDIAASSETS_H

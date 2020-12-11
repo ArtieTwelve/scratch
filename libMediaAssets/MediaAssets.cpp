@@ -1,6 +1,9 @@
 //
+// Created by smithla on 12/11/20.
+//
 
-#include "Song.h"
+#include "MediaAssets.h"
+
 
 std::unique_ptr<Song> SongFactory(std::wstring artist, std::wstring title) {
     return std::make_unique<Song>(artist,title);
@@ -8,7 +11,7 @@ std::unique_ptr<Song> SongFactory(std::wstring artist, std::wstring title) {
 
 
 Song::Song() {
- std::cout << "  Default Constructor" << std::endl;
+    std::cout << "  Default Constructor" << std::endl;
 }
 
 Song::~Song() {
@@ -57,7 +60,7 @@ std::wstring  Song::getArtist() {
 
 
 Photo::~Photo() {
- std::cout << "Destructor" << std::endl;
+    std::cout << "Destructor" << std::endl;
 
 }
 

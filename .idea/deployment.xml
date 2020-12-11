@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" createEmptyFolders="true" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" deleteMissingItems="true" createEmptyFolders="true" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="Chatbot (d86593aa-b317-48f5-908a-ca49cec298e3)">
+      <paths name="AlexaU20 (f8f9500a-54be-4704-96e5-3d891427af0b)">
         <serverdata>
           <mappings>
-            <mapping deploy="chat" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="deploy" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-chat" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-alexa" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-local" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-d-alexa" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-scratch" />
           </excludedPaths>
         </serverdata>
       </paths>
-      <paths name="U20 (f8f9500a-54be-4704-96e5-3d891427af0b)">
+      <paths name="ScratchU20 (efff9cb3-d171-461e-986b-c0f79a33a7d1)">
         <serverdata>
           <mappings>
-            <mapping deploy="scratch" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="deploy" local="$PROJECT_DIR$" web="/" />
           </mappings>
           <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-alexa" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-chat" />
-            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-d-alexa" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-local" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-scratch" />
           </excludedPaths>
         </serverdata>
       </paths>

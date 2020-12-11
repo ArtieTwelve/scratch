@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(scratch)
+project(scratch) # scratch = main.cpp
 
 
 ##########  Add GTest, GMock as subprojects #################33333333
@@ -54,15 +54,16 @@ add_subdirectory(SharedPointer)
 
 # static libs
 add_subdirectory(libEntity)
-add_subdirectory(libSong)
+add_subdirectory(libMediaAssets)
+message("Message test")
 
 # tests
 add_subdirectory(tests)
 
 # the top level main
-add_executable(scratch main.cpp SharedPointer/main.cpp)
+add_executable(scratch main.cpp)
 
 # if main uses a lib, you must add it here
-target_link_libraries(scratch libSong)
+target_link_libraries(scratch libMediaAssets)
 
 
