@@ -1,12 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <iostream>
-#include <memory>
-#include "./entity/Entity.h"
+#define DEBUG 1
 
+#include "./libSong/Song.h"
 
 int main() {
     std::cout << "Hello, Scratch World!" << std::endl;
+
+    Song* s1 = new Song();
 
     std::cout << "Goodbye, Scratch World!" << std::endl;
 }

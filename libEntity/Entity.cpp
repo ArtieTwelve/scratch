@@ -20,6 +20,7 @@ Entity::Entity(const Entity& e) {
 
 Entity::~Entity() {
     std::cout << " Destructor\n";
+
 }
 
 Entity &Entity::operator=(Entity &ref) {
