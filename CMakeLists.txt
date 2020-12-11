@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.16)
 project(scratch)
-set(CMAKE_CXX_STANDARD  17)
+
 
 ##########  Add GTest, GMock as subprojects #################33333333
 # Download and unpack googletest at configure time
@@ -46,11 +46,23 @@ message("Gtest_Source_Dir is: " "${gtest_SOURCE_DIR}")
 message("Gtest_Source_Dir is: " "${gmock_SOURCE_DIR}")
 
 ################ End Add GTest, GMock ###################
-add_subdirectory(entity)
-add_subdirectory(song)
+
+# Sub projects that have a main
+add_subdirectory(BackInserter)
+add_subdirectory(UniquePointer)
+add_subdirectory(SharedPointer)
+
+# static libs
+add_subdirectory(libEntity)
+add_subdirectory(libSong)
+
+# tests
 add_subdirectory(tests)
 
+# the top level main
+add_executable(scratch main.cpp SharedPointer/main.cpp)
 
-add_executable(scratch main.cpp song/Song.cpp song/Song.h)
-add_executable(songMain songMain.cpp song/Song.h song/Song.cpp)
-target_link_libraries(song)
+# if main uses a lib, you must add it here
+target_link_libraries(scratch libSong)
+
+
