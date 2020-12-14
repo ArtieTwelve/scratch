@@ -10,6 +10,14 @@
 
 using namespace std;
 
+struct Message {
+    int id;
+    std::string payload;
+    int errorCode;
+
+    static int messageCount;
+};
+
 class Position {
     int x,y;
     std::unique_ptr<std::pair<int,int>> getPosition() {
