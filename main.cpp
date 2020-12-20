@@ -1,61 +1,49 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+
 #define DEBUG 1
 
+#include <thread>
+#include <iostream>
+#include <mutex>
+#include <future>
+#include "libEntity/Entity.h"
+
+ std::mutex m;
 
 
-#include "./libMediaAssets/MediaAssets.h"
 
 
-using namespace std;
+ int  processOne(int x) {
+    std::unique_lock<std::mutex> lock(m);
+     std::cout << " Process One thread and x is: " << x << "\n";
+     std::this_thread::sleep_for(std::chrono::seconds(1));
+     lock.unlock();
+     return ++x;
+ }
 
-struct Message {
-    int id;
-    std::string payload;
-    int errorCode;
-
-    static int messageCount;
-};
-
-class Position {
-    int x,y;
-    std::unique_ptr<std::pair<int,int>> getPosition() {
-        return std::make_unique<std::pair<int,int>>(x,y);
-    }
-};
-
-struct BaseEntity {
-public:
-    int i;
-    std::string name;
-
-    BaseEntity(int _i, std::string _n) : i(_i), name(_n) {}
-    BaseEntity(const BaseEntity& other) {
-        i = other.i;
-        name = other.name;
-    }
-
-    void doSomething(float z, int i, int j, std::string name);
-
-    void doSomethingTwo(int i);
-
-};
-
-void BaseEntity::doSomething(float z, int i, int j, std::string name) {
+ void processTwo(int& _x) {
+    std::unique_lock<std::mutex> lock(m);
+    _x = 2;
+    std::cout << " Process Two thread waits for x: " << _x << "\n";
 
 }
-
 
 int main() {
-    std::cout << "Hello, Scratch World!" << std::endl;
+//    std::future<int> fu_no_thread = std::async(std::launch::deferred,factorial,4);
+    std::cout << "Begin, Scratch World!" << std::endl;
+    int x{0};
+
+    int& b = x;
+    std::promise<int> prom;
+    //std::future<int> fut = std::async(std::launch::async,processOne,x);
+   auto fut2 = std::async(std::launch::async,processOne,x);
+   int ret = fut2.get();
+   std::cout << "Ret is: " << ret << "\n";
 
 
 
-    std::cout << "Goodbye, Scratch World!\n";
+    std::cout << "End, Scratch World!" << std::endl;
+
 }
-
-
-
-
-

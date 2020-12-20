@@ -18,7 +18,7 @@ class Entity {
          // 1 copy constructor
          Entity(const Entity&);
          // 2 copy assignment operator
-         Entity& operator=(Entity& ref);
+         Entity& operator=(const Entity& ref);
          // 3 move constructor
          Entity(Entity&&);
          // 4 move assigment operator
@@ -42,7 +42,23 @@ class Entity {
 };
 
 
+class SimpleString {
+public:
+  SimpleString();
+  SimpleString(int len, std::string str);
 
+  // Rule of 5
+  virtual ~SimpleString();
+  SimpleString(const SimpleString& other);
+  SimpleString& operator=(const SimpleString& other);
+  SimpleString(SimpleString&& other);
+  SimpleString& operator=(SimpleString&& other);
+
+
+private:
+    int _len;
+    std::string _str;
+};
 
 
 

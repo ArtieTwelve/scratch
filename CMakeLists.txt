@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(scratch) # scratch = main.cpp
-
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -Wall -Werror -Wextra -pedantic -pedantic-errors -g")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread ")
 
 ##########  Add GTest, GMock as subprojects #################33333333
 # Download and unpack googletest at configure time
@@ -51,6 +52,7 @@ message("Gtest_Source_Dir is: " "${gmock_SOURCE_DIR}")
 add_subdirectory(BackInserter)
 add_subdirectory(UniquePointer)
 add_subdirectory(SharedPointer)
+add_subdirectory(Threads)
 
 # static libs
 add_subdirectory(libEntity)
@@ -64,6 +66,6 @@ add_subdirectory(tests)
 add_executable(scratch main.cpp)
 
 # if main uses a lib, you must add it here
-target_link_libraries(scratch libMediaAssets)
+target_link_libraries(scratch libEntity)
 
 

@@ -4,6 +4,7 @@
 
 
 #include "Entity.h"
+
 Entity::Entity() { std::cout << " Default CTOR\n";}
 Entity::Entity(std::string name)  : _name(name) {
     std::cout << " Int CTOR\n";
@@ -22,41 +23,50 @@ Entity::~Entity() {
     std::cout << " Destructor\n";
 
 }
+// Copy Assignment and Move Assignment - use these patterns
 
-Entity &Entity::operator=(Entity &ref) {
-    std::cout << " Assignment Operator\n";
-    _name = ref._name;
-    _i = ref._i;
-    _s = ref._s;
-    _preg = ref._preg;
-    std::swap(_pi,ref._pi);
+Entity &Entity::operator=(const Entity &rhs) {
+    if(this != &rhs) {
+        std::cout << " Assignment Operator\n";
+
+
+        _name = rhs._name;
+        _i = rhs._i;
+        _s = rhs._s;
+        _preg = rhs._preg;
+
+        // Cant' use swap due to const rhs
+        //std::swap(_pi,rhs._pi);
+    }
     return *this;
 }
 
-Entity::Entity(Entity &&ref) {
-    std::cout << " Move CTOR \n";
-    _i = ref._i;
-}
-
-Entity &Entity::operator=(Entity &&ref) noexcept {
+Entity &Entity::operator=(Entity &&rhs) noexcept {
     std::cout << " Move Assignment\n";
     _name = "";
     _preg = NULL;
     _i = 0;
     _s = "";
-    _name = std::move(ref._name);
-    _i = std::move(ref._i);
-    _pi = std::move(ref._pi);
-    _s = std::move(ref._s);
-    _preg = std::move(ref._preg);
+    _name = std::move(rhs._name);
+    _i = std::move(rhs._i);
+    _pi = std::move(rhs._pi);
+    _s = std::move(rhs._s);
+    _preg = std::move(rhs._preg);
 
-    ref._i = 0;
-    ref._preg = nullptr;
-    ref._s = "";
-    ref._name = "";
-    ref._pi.release();
+    rhs._i = 0;
+    rhs._preg = nullptr;
+    rhs._s = "";
+    rhs._name = "";
+    rhs._pi.release();
     return *this;
 }
+
+Entity::Entity(Entity &&rhs) {
+    std::cout << " Move CTOR \n";
+    _i = rhs._i;
+}
+
+
 
 void Entity::setInt(int i) {
     _i = i;
@@ -76,6 +86,7 @@ void Entity::setName(std::string n) {
 int Entity::getPi() {
     return *(_pi.get());
 }
+
 
 // The main class used in main.cpp
 // Move this code back to main.cpp to test it
@@ -149,3 +160,46 @@ int Entity::getPi() {
     delete raw;
     std::cout << "Goodbye, Scratch World!" << std::endl;
 }*/
+
+SimpleString::SimpleString() {
+    std::cout << "SimpleString Default Constructor" << "\n";
+}
+
+SimpleString::SimpleString(int len, std::string str): _len(len) , _str(str) {
+    std::cout << "SimpleString Initialize Constructor" << "\n";
+}
+
+SimpleString::~SimpleString() {
+    std::cout << "SimpleString Destructor" << "\n";
+}
+
+SimpleString::SimpleString(const SimpleString &other) : _len(other._len), _str(other._str){
+    std::cout << "SimpleString Copy Constructor" << "\n";
+}
+
+SimpleString &SimpleString::operator=(const SimpleString &other) {
+    std::cout << "SimpleString Assignment Operator" << "\n";
+    _len = other._len;
+    _str = other._str;
+    return *this;
+}
+
+SimpleString::SimpleString(SimpleString &&other) {
+    std::cout << "SimpleString Move Constructor" << "\n";
+    _len = std::move(other._len);
+    _str = std::move(other._str);
+    other._len = 0;
+    other._str = "";
+
+}
+
+SimpleString &SimpleString::operator=(SimpleString &&other) {
+    std::cout << "SimpleString Move Assignment Operator" << "\n";
+    _len = std::move(other._len);
+    _str = std::move(other._str);
+    other._len = 0;
+    other._str = "";
+    return *this;
+}
+
+

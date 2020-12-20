@@ -184,10 +184,10 @@ int main()
     // 1) pass the raw pointer or reference into a function. useTypeByRawPointer does not share ownership of the object
     //    Use this when the contract clearly specifies that the caller retains ownership of the shared_ptr lifetime.
     //    You could also pass the shared pointer by reference or const
-    type* tp = t.get();
-    type& tr = &t.get();
-    useTypeByRawPointer(tp);
-    useTypeByRef(tr);
+   // type* tp = t.get();
+  //  type& tr = &t.get();
+  //  useTypeByRawPointer(tp);
+   // useTypeByRef(tr);
 
     // 2
 
